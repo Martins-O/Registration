@@ -14,8 +14,8 @@ import java.util.Collections;
 @EqualsAndHashCode
 @Entity
 @Table(name = "t_app_user")
-@NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class AppUser implements UserDetails {
 
     @Id
@@ -30,6 +30,8 @@ public class AppUser implements UserDetails {
     )
     private Long id;
     private String username;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
     private String name;
@@ -37,6 +39,15 @@ public class AppUser implements UserDetails {
     private AppUserRole roles;
     private boolean locked;
     private boolean enabled;
+
+    public AppUser(String firstName, String lastName, String email, String password, String username, AppUserRole appUserRole) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.name());
