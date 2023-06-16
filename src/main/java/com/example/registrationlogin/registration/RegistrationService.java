@@ -7,7 +7,6 @@ import com.example.registrationlogin.email.EmailSender;
 import com.example.registrationlogin.registration.token.ConfirmationToken;
 import com.example.registrationlogin.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

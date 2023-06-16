@@ -45,6 +45,7 @@ public class AppUser implements UserDetails {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.username = username;
     }
 
 

@@ -18,6 +18,7 @@ public class SecurityConfig {
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
         security
                 .csrf().disable()
