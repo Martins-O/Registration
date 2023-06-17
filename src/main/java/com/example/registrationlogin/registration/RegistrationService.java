@@ -3,13 +3,16 @@ package com.example.registrationlogin.registration;
 import com.example.registrationlogin.appuser.AppUser;
 import com.example.registrationlogin.appuser.AppUserRole;
 import com.example.registrationlogin.appuser.AppUserService;
+import com.example.registrationlogin.email.EmailNotificationRequest;
 import com.example.registrationlogin.email.EmailSender;
+import com.example.registrationlogin.email.Recipient;
 import com.example.registrationlogin.registration.token.ConfirmationToken;
 import com.example.registrationlogin.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 
 @Service
@@ -39,10 +42,8 @@ public class RegistrationService {
         );
 
         String link = "http://localhost:8080/api/v1/users/registration/confirm?token="+ token;
-        emailSender.sendEmail(
-                request.getEmail(),
-                buildEmail(request.getFirstName(), link)
-        );
+        EmailNotificationRequest notificationRequest = buildEmailNotificationRequest(.getUserdetails ().getEmail (), saved.getUserdetails ().getLastname ());
+        String response = emailSender.sendMail (notificationRequest);
         return token;
     }
 
@@ -71,7 +72,16 @@ public class RegistrationService {
         return "Confirmation";
     }
 
-    private String buildEmail(String name, String link) {
+    private EmailNotificationRequest buildEmailNotificationRequest(String email, String lastname) throws FileNotFoundException {
+        EmailNotificationRequest request = new EmailNotificationRequest();
+        request.getTo ().add (new Recipient(lastname, email));
+        String template = buildEmail ();
+        String content = String.format (template, lastname, "Welcome");
+        request.setHtmlContent (content);
+        return request;
+    }
+
+    private String buildEmail() {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
                 "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
