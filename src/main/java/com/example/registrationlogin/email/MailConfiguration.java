@@ -10,20 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 @Getter
 @Setter
-@Configuration
 public class MailConfiguration {
-    @Value("${mail.api.key}")
-    private String mailApiKey;
-
-    @Value("${sendinblue.mail.url}")
+    private String apikey;
     private String mailUrl;
-
-
-    @Bean
-    public MailConfiguration mailConfig(){
-        return new MailConfiguration (mailApiKey, mailUrl);
-    }
-
-//    private String apikey;
-//    private String mailUrl;
 }

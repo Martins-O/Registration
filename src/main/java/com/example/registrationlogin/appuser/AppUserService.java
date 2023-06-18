@@ -49,7 +49,7 @@ public class AppUserService implements UserDetailsService {
         tokenService.saveConfirmationToken(confirmationToken);
 
         //TODO: SEND EMAIL
-        return "Good";
+        return token;
     }
 
     public void enableAppUser(String email){

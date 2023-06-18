@@ -28,7 +28,7 @@ public class EmailService implements EmailSender{
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("api-key", mailConfig.getMailApiKey());
+        headers.set("api-key", mailConfig.getApikey ());
         HttpEntity<EmailNotificationRequest> requestHttpEntity = new HttpEntity<> (emailNotificationRequest, headers);
 
         ResponseEntity<String> response =
