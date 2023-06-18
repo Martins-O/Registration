@@ -1,5 +1,7 @@
 package com.example.registrationlogin.email;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface EmailSender {
-    String sendMail(EmailNotificationRequest emailNotificationRequest);
+    CompletableFuture<String> sendMail(EmailNotificationRequest emailNotificationRequest);
 }

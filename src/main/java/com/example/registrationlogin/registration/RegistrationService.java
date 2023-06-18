@@ -11,7 +11,6 @@ import com.example.registrationlogin.registration.token.ConfirmationToken;
 import com.example.registrationlogin.registration.token.ConfirmationTokenService;
 import com.example.registrationlogin.utils.AppUtilities;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +50,7 @@ public class RegistrationService {
                 request.getFirstName (),
                 token
         );
-        String response = emailSender.sendMail (notificationRequest);
+        String response = String.valueOf (emailSender.sendMail (notificationRequest));
         if (response == null) {
             return getRegisterFailureResponse();
         }
